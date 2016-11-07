@@ -38,6 +38,8 @@ goaws -n
 loop
   echo "Adding a new server"
   echo "What do you want to call it?
+  	check to see if unique
+		if not prompt for a unique name
 	read servername - write to serverlist.deb
 	read serverhostname write to /etc/hosts
 
