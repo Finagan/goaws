@@ -1,0 +1,95 @@
+#goaws scratch sheet
+
+Store information
+
+
+.pem key name and location. Normally found in /home/$user/.ssh Key name will have to be called for and remembered with
+persistance
+
+Username for server login eg Ubuntu@ 
+Strech goal multi user logins saved??
+
+Ip address, it is assumed that the user will be using aws elastic IP system so this can remain relativly constant however it
+should be as easy as possible to change the Ip of an existing server to not create a burdon. Strech goal would be some form of
+varification which pings the address automaticly to see if it exists or is visable.
+
+Adding onto the Ip adress list would be updateing the hosts file in /etc/hosts to give each server its name and stream line the
+process
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Psudo code
+serverid= number of server
+servername= name of server
+keylocation= call $serverid key location
+keyname= call $serverid key name
+username= call $serverid username
+ipaddress= call $serverid ipaddress
+serverhostname= call $serverid host name
+
+
+# this would recall the infomation on server named 1 and call an ssh command
+goaws 1 (servername=1)
+  ssh -i $keylocation$keyname $username@$serverhostname
+  
+#Addition of a new server
+goaws -n
+	Assign next server id number +1 from highest
+loop
+  echo "Adding a new server"
+  echo "What do you want to call it?
+	read servername - write to serverlist.deb
+	read serverhostname write to /etc/hosts
+
+  echo "file path of key:"
+	read keylocation - write to serverlist.deb
+
+  echo "keyname:"
+	read keyname - write to serverlist.deb
+
+  echo "Ip address:
+	read ipaddress - write to serverlist.deb
+
+  echo "user login"
+	read username - write to serverlist.deb
+
+  echo "is this correct?"
+  echo "ssh -i $keylocation$keyname $username@$serverhostname"
+  echo y/n
+
+if
+
+	y
+		store in memory
+
+	n 	loop
+
+end if
+
+
+# list all servers currently stored
+goaws -l
+
+loop
+list $serverid $servername $... $... $...
++1 to counter
+end loop
+
+# list all information stored about that server
+goaws 1 -l
+echo" server id	server name	...	...	...	..."
+echo "------------------------------------------------------"
+list $serverid $servername $... $... $...
+
+
+#edit infomation currently stored about this server
+goaws 1 -e
+
+?????
+
+
+
+
+
+
+
